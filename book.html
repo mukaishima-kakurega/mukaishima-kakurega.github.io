@@ -108,8 +108,8 @@ body.sent .done{display:block}
   <div class="intro">
     <div class="label">Reservation</div>
     <h1 data-ja>ご予約</h1><h1 data-en>Book your stay</h1>
-    <p class="lead" data-ja>空いている日を選んで、お申し込みください。内容を確認して、料金とお支払い（銀行振込）のご案内をメールでお送りします。</p>
-    <p class="lead" data-en>Choose your dates and send a request. We will email you the final price and payment instructions (bank transfer).</p>
+    <p class="lead" data-ja>空いている日を選んで、ご予約ください。ご予約後すぐに、宿泊者名簿・チェックイン方法・お支払い（銀行振込）のご案内をメールでお送りします。</p>
+    <p class="lead" data-en>Choose your dates and book. Right after booking, we will email you the guest register, check-in guide and bank transfer details.</p>
   </div>
 
   <div class="grid">
@@ -181,14 +181,14 @@ body.sent .done{display:block}
         <dt data-ja>人数</dt><dt data-en>Guests</dt><dd id="sG">—</dd>
         <dt data-ja>プラン</dt><dt data-en>Plan</dt><dd id="sP">—</dd>
       </dl>
-      <div class="total"><span data-ja>料金の目安</span><span data-en>Estimated total</span><b id="sT">—</b></div>
-      <p class="note" data-ja>GW・お盆・年末年始などは高くなります（上の金額に入っています）。確定の料金はメールでお知らせします。</p>
-      <p class="note" data-en>Peak-season rates (Golden Week, Obon, New Year) are included above. We will confirm the final price by email.</p>
-      <button class="submit" id="send" type="button" disabled><span data-ja>予約を申し込む</span><span data-en>Send booking request</span></button>
+      <div class="total"><span data-ja>料金（合計）</span><span data-en>Total</span><b id="sT">—</b></div>
+      <p class="note" data-ja>GW・お盆・年末年始などは高くなります（上の金額に入っています）。</p>
+      <p class="note" data-en>Peak-season rates (Golden Week, Obon, New Year) are included above.</p>
+      <button class="submit" id="send" type="button" disabled><span data-ja>予約する</span><span data-en>Book now</span></button>
       <div class="msg" id="err"></div>
       <ul class="info">
         <li data-ja>チェックイン 14:00〜20:00／チェックアウト 10:00</li><li data-en>Check-in 14:00–20:00 / Check-out 10:00</li>
-        <li data-ja>お支払いは銀行振込です（ご案内はメールで）</li><li data-en>Payment by bank transfer (details by email)</li>
+        <li data-ja>お支払いは銀行振込で、チェックインの7日前までです（ご案内はメールで）</li><li data-en>Payment by bank transfer, due 7 days before check-in (details by email)</li>
         <li data-ja>駐車場は2台まで無料</li><li data-en>Free parking for up to 2 cars</li>
         <li data-ja>お問い合わせ：<a href="mailto:yslegend0210@gmail.com" style="text-decoration:underline">yslegend0210@gmail.com</a></li><li data-en>Questions: <a href="mailto:yslegend0210@gmail.com" style="text-decoration:underline">yslegend0210@gmail.com</a></li>
       </ul>
@@ -197,9 +197,9 @@ body.sent .done{display:block}
 
   <div class="done" id="done">
     <div class="label">Thank you</div>
-    <h2 data-ja>お申し込みを受け付けました</h2><h2 data-en>We received your request</h2>
-    <p data-ja>確認のメールをお送りしました。料金とお支払いのご案内をお送りした時点で、ご予約の確定となります。</p>
-    <p data-en>We've sent you a confirmation email. Your booking is confirmed once we send the price and payment details.</p>
+    <h2 data-ja>ご予約ありがとうございます</h2><h2 data-en>Thank you for your booking</h2>
+    <p data-ja>宿泊者名簿・チェックイン方法・お支払い（銀行振込）のご案内をメールでお送りしました。メールが届かないときは、迷惑メールのフォルダもご確認ください。</p>
+    <p data-en>We have emailed you the guest register, check-in guide and bank transfer details. If you can't find it, please check your spam folder.</p>
     <p class="no" id="doneNo"></p>
     <a href="index.html"><span data-ja>ホームへ戻る</span><span data-en>Back to home</span></a>
   </div>
@@ -329,7 +329,7 @@ $('send').onclick=async()=>{
   try{
     const r=await fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)});
     const j=await r.json();
-    if(j.ok){$('doneNo').textContent=T('受付番号：','Request No.: ')+j.no;document.body.classList.add('sent');scrollTo(0,0);return}
+    if(j.ok){$('doneNo').textContent=T('受付番号：','Booking No.: ')+j.no;document.body.classList.add('sent');scrollTo(0,0);return}
     const m={taken:T('申し訳ありません。その日は先に予約が入りました。別の日をお選びください。','Sorry, those dates were just booked. Please choose other dates.'),
       dates:T('日にちを選び直してください。','Please choose your dates again.'),guests:T('人数を確かめてください。','Please check the number of guests.'),
       contact:T('お名前・メールアドレス・電話番号を確かめてください。','Please check your name, email and phone.')};
